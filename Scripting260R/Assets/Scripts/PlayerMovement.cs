@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private float groundDistance = 0.5f;
 
-    private RaycastHit slopeHit;
+    public RaycastHit slopeHit;
     
     private Vector3 moveDirection;
     private Vector3 slopeMoveDirection;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         grounded = Physics.CheckSphere(transform.position - new Vector3(0,1,0), groundDistance, groundMask);
+
         print(grounded);
 
         if (Input.GetButtonDown("Jump") && grounded)

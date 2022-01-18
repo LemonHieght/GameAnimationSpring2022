@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b664677695494ce43b0f0cabec01a6f0, type: 3}
   m_Name: PlayerDrag
   m_EditorClassIdentifier: 
-  value: 0
+  value: 4
