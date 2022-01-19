@@ -23,16 +23,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDrag;
     [SerializeField] private float airDrag = 1f;
 
+    [Header("Sprinting")]
+    [SerializeField] private float walkSpeed = 4f;
+    [SerializeField] private float SprintSpeed = 6f;
+    [SerializeField] private float acceleration = 10f;
     
+    [Header("GroundDetection")]
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Transform groundCheck;
+    private bool grounded;
+    private float groundDistance = 0.5f;
     
     private float playerHeight = 2f;
     private float verticalMovement;
     private float HorizontalMovement;
-
-    [Header("GroundDetection")]
-    [SerializeField] private LayerMask groundMask;
-    private bool grounded;
-    private float groundDistance = 0.5f;
 
     public RaycastHit slopeHit;
     
@@ -72,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        grounded = Physics.CheckSphere(transform.position - new Vector3(0,1,0), groundDistance, groundMask);
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         print(grounded);
 
@@ -84,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
             
         PlayerInput();
+        ControlSpeed();
         ControlDrag();
     }
     
@@ -128,12 +133,23 @@ public class PlayerMovement : MonoBehaviour
         {
             rigid.drag = airDrag;
         }
-        
-        
+    }
+
+    void ControlSpeed()
+    {
+        if (Input.GetButton("Fire3") && grounded)
+        {
+            moveSpeed = Mathf.Lerp(moveSpeed, SprintSpeed, acceleration * Time.deltaTime);
+        }
+        else
+        {
+            moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
+        }
     }
 
     private void Jump()
     {
         rigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
     }
 }
