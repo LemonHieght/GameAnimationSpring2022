@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Transform Orientation;
-    
+
     [Header("Movement")]
     public FloatOS playerSpeed;
     [SerializeField] private float moveSpeed = 5f;
@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
+    private bool wallBack;
+    private bool wallFront;
+    [SerializeField] private float wallDistance = 1.5f;
     
     [Header("Drag")]
     public FloatOS playerDrag;
@@ -32,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
     private bool grounded;
-    private float groundDistance = 0.5f;
-    
+    [SerializeField] private float groundDistance = 0.5f;
+
     private float playerHeight = 2f;
     private float verticalMovement;
     private float HorizontalMovement;
@@ -76,20 +79,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        PlayerInput();
+        ControlSpeed();
+        ControlDrag();
+        WallCheck();
+        
         grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        print(grounded);
-
+        
         if (Input.GetButtonDown("Jump") && grounded)
         {
+            if (!wallBack || !wallFront)
+            {
+                Debug.Log(" no wall");
+            }
+            else
+            {
+                Debug.Log("wall");
+            }
             Jump();
         }
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
-            
-        PlayerInput();
-        ControlSpeed();
-        ControlDrag();
     }
     
     private void FixedUpdate()
@@ -122,7 +132,14 @@ public class PlayerMovement : MonoBehaviour
             rigid.AddForce(moveDirection.normalized * moveSpeed * airMovementMultiplier, ForceMode.Acceleration);
         }
     }
+    
+    private void Jump()
+    {
+        rigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+    }
 
+    
     private void ControlDrag()
     {
         if (grounded)
@@ -147,9 +164,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void WallCheck()
     {
-        rigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+        wallBack = Physics.Raycast(transform.position, -Orientation.forward, wallDistance);
+        wallFront = Physics.Raycast(transform.position, Orientation.forward, wallDistance);
     }
 }

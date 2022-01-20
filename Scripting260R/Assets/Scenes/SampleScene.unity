@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 290504476}
   - component: {fileID: 290504475}
   - component: {fileID: 290504478}
+  - component: {fileID: 290504479}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -295,6 +296,7 @@ MonoBehaviour:
   movementMultiplier: 10
   airMovementMultiplier: 0.5
   jumpForce: 7
+  wallDistance: 1.5
   playerDrag: {fileID: 11400000, guid: 63ac91b4882dc784182ce9fb44e4bf67, type: 2}
   groundDrag: 5
   airDrag: 1
@@ -305,6 +307,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 716914577}
+  groundDistance: 0.5
 --- !u!54 &290504476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -351,11 +354,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394129fcd87f053439493d44a6f75241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallRun: {fileID: 290504479}
   sensX: 150
   sensY: 150
   multiplier: 0.01
   cam: {fileID: 1811101087}
   orientation: {fileID: 1214786726}
+--- !u!114 &290504479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290504474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb56cc1a9052ad4e99da9cf8f60d8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1214786726}
+  wallDistance: 0.6
+  minJumpHeight: 1.5
+  wallRunGrav: 1.5
+  wallRunJumpForce: 2
+  cam: {fileID: 963194227}
+  fov: 90
+  wallRunFOV: 110
+  wallRunFOVTime: 20
+  camTilt: 20
+  camTiltTime: 20
 --- !u!1 &299508703
 GameObject:
   m_ObjectHideFlags: 0

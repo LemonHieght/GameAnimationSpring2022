@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private WallRun wallRun;
+    
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
     
@@ -30,7 +33,7 @@ public class PlayerLook : MonoBehaviour
     {
         PlayerInput();
         
-        cam.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        cam.transform.localRotation = Quaternion.Euler(rotationX, rotationY, wallRun.tilt);
         orientation.transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 
