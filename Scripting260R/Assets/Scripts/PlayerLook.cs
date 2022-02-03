@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerLook : MonoBehaviour
 {
+    public UnityAction actionObj;
+    
     [Header("References")]
     [SerializeField] private WallRun wallRun;
     
@@ -27,6 +30,7 @@ public class PlayerLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        actionObj?.Invoke();
     }
 
     private void Update()

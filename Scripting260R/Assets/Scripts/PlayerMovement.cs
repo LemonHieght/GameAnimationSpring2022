@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
     private bool grounded;
-    [SerializeField] private float groundDistance = 0.5f;
+    [SerializeField] private float groundDistance = 0.4f;
 
     private float playerHeight = 2f;
     private float verticalMovement;
@@ -84,24 +84,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerInput();
         ControlSpeed();
         ControlDrag();
-        WallCheck();
-        
-        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            if (wallFront || wallBack)
-            {
-                Debug.Log("wall");
-            }
-            else
-            {
-                Jump();
-                Debug.Log("no wall");
-            }
-            
+            Jump();
         }
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
@@ -111,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movePlayer();
     }
-    
 
     private void PlayerInput()
     {
@@ -143,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
         rigid.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
     }
-
     
     private void ControlDrag()
     {
@@ -167,13 +153,5 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
-    }
-
-    private void WallCheck()
-    {
-        Debug.DrawRay(transform.position, -Orientation.forward * wallBackHit.distance, Color.red);
-        wallBack = Physics.Raycast(transform.position, -Orientation.forward, out wallBackHit, wallDistance);
-        Debug.DrawRay(transform.position, Orientation.forward * wallFrontHit.distance, Color.red);
-        wallFront = Physics.Raycast(transform.position, Orientation.forward, out wallFrontHit, wallDistance);
     }
 }
