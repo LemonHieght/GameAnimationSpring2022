@@ -6,10 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerLook : MonoBehaviour
 {
-    public UnityAction actionObj;
-    
-    [Header("References")]
-    [SerializeField] private WallRun wallRun;
+    private WallRun wallRun;
     
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
@@ -30,7 +27,7 @@ public class PlayerLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        actionObj?.Invoke();
+        wallRun = GetComponent<WallRun>();
     }
 
     private void Update()
