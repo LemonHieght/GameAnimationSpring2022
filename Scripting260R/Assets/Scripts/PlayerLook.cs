@@ -8,8 +8,8 @@ public class PlayerLook : MonoBehaviour
 {
     private WallRun wallRun;
     
-    [SerializeField] private float sensX;
-    [SerializeField] private float sensY;
+    [SerializeField] private float sensX = 150f;
+    [SerializeField] private float sensY = 150f;
     
     [SerializeField] private float multiplier = 0.01f;
     

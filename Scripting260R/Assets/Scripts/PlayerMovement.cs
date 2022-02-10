@@ -7,28 +7,30 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Transform Orientation;
+    public Vector3OS playerLocation;
 
     [Header("Movement")]
     public FloatOS playerSpeed;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float movementMultiplier = 10f;
-    [SerializeField] private float airMovementMultiplier = 0.4f;
+    [SerializeField] private float airMovementMultiplier = 1f;
     
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
     private bool wallBack;
     private bool wallFront;
-    [SerializeField] private float wallDistance = 0.5f;
+    [SerializeField] private float wallDistance = 1.5f;
     
     [Header("Drag")]
     public FloatOS playerDrag;
-    [SerializeField] private float groundDrag;
-    [SerializeField] private float airDrag = 1f;
+    private float groundDrag;
+    [SerializeField] private float airDrag = 0.5f;
+    
 
     [Header("Sprinting")]
-    [SerializeField] private float walkSpeed = 4f;
-    [SerializeField] private float SprintSpeed = 6f;
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float SprintSpeed = 7f;
     [SerializeField] private float acceleration = 10f;
     
     [Header("GroundDetection")]
@@ -75,8 +77,6 @@ public class PlayerMovement : MonoBehaviour
         rigid.freezeRotation = true;
         moveSpeed = playerSpeed.value;
         groundDrag = playerDrag.value;
-        
-        
     }
 
     private void Update()
@@ -98,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         movePlayer();
+
+        playerLocation.SetPosistion(Orientation);
     }
 
     private void PlayerInput()

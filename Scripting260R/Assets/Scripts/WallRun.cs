@@ -8,20 +8,20 @@ public class WallRun : MonoBehaviour
         [SerializeField] private Transform orientation;
         
         [Header("Wall Detection")]
-        [SerializeField] private float wallDistance = 0.5f;
+        [SerializeField] private float wallDistance = 0.6f;
         [SerializeField] private float minJumpHeight = 1.5f;
 
         [Header("Wall Running")] 
-        [SerializeField] private float wallRunGrav;
-        [SerializeField] private float wallRunJumpForce;
+        [SerializeField] private float wallRunGrav = 1f;
+        [SerializeField] private float wallRunJumpForce = 2f;
 
         [Header("Camera")]
         [SerializeField] private Camera cam;
-        [SerializeField] private float fov;
-        [SerializeField] private float wallRunFOV;
-        [SerializeField] private float wallRunFOVTime;
-        [SerializeField] private float camTilt;
-        [SerializeField] private float camTiltTime;
+        [SerializeField] private float fov = 90f;
+        [SerializeField] private float wallRunFOV = 110f;
+        [SerializeField] private float wallRunFOVTime = 20f;
+        [SerializeField] private float camTilt = 20f;
+        [SerializeField] private float camTiltTime = 20f;
 
         public float tilt
         {
