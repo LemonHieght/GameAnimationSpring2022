@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
+//Sebastian Lague FoV
 [CustomEditor(typeof(FeildOfView))]
 public class FieldOfVeiwEditor : Editor
 {

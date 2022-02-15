@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Plai Rigidbody FPS Controller
 public class WallRun : MonoBehaviour
 {
         [SerializeField] private Transform orientation;

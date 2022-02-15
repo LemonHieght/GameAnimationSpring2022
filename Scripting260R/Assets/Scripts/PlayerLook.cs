@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+//Plai Rigidbody FPS Controller
 public class PlayerLook : MonoBehaviour
 {
     private WallRun wallRun;
