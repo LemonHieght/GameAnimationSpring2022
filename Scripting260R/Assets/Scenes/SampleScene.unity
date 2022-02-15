@@ -278,14 +278,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 122408209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be059de7fc194484597db93c04b9fd88, type: 3}
+  m_Script: {fileID: 11500000, guid: f29229a45515edd45954e05a90b18121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLocation: {fileID: 0}
   player:
     serializedVersion: 2
     m_Bits: 64
-  enemyDetection: {fileID: 1757662225}
-  viewDistance: 23.45
+  enviorment:
+    serializedVersion: 2
+    m_Bits: 8
+  enemySight: {fileID: 1757662225}
+  visibleTargets: []
+  viewRadius: 35.4
+  viewAngle: 120
 --- !u!1 &136684528
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,9 +331,106 @@ Transform:
   - {fileID: 1863979608}
   - {fileID: 585225686}
   - {fileID: 861550892}
+  - {fileID: 174392764}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &174392763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174392764}
+  - component: {fileID: 174392767}
+  - component: {fileID: 174392766}
+  - component: {fileID: 174392765}
+  m_Layer: 3
+  m_Name: Cube (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174392764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174392763}
+  m_LocalRotation: {x: -0, y: -0.1490207, z: -0, w: 0.98883414}
+  m_LocalPosition: {x: -4.6, y: 1, z: -13.8}
+  m_LocalScale: {x: 20.095438, y: 7.9974, z: 2}
+  m_Children: []
+  m_Father: {fileID: 136684529}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: -17.14, z: 0}
+--- !u!65 &174392765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174392763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &174392766
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174392763}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 363c853a02159d64c849c327a7d83330, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &174392767
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174392763}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &290504474
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,15 +464,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Orientation: {fileID: 1214786726}
+  playerLocation: {fileID: 11400000, guid: 4d91c66051e7e9844a77abd5c8db6b5c, type: 2}
   playerSpeed: {fileID: 11400000, guid: e0d066706939e9a4fbdfd6cf019779eb, type: 2}
   moveSpeed: 5
   movementMultiplier: 10
-  airMovementMultiplier: 0.5
+  airMovementMultiplier: 1
   jumpForce: 10
   wallDistance: 1.5
   playerDrag: {fileID: 11400000, guid: 63ac91b4882dc784182ce9fb44e4bf67, type: 2}
-  groundDrag: 5
-  airDrag: 1
+  airDrag: 0.5
   walkSpeed: 5
   SprintSpeed: 7
   acceleration: 10
