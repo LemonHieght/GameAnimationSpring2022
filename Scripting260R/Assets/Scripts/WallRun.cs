@@ -8,7 +8,7 @@ using UnityEngine;
 public class WallRun : MonoBehaviour
 {
         [SerializeField] private Transform orientation;
-        
+
         [Header("Wall Detection")]
         [SerializeField] private float wallDistance = 0.6f;
         [SerializeField] private float minJumpHeight = 1.5f;
@@ -51,30 +51,30 @@ public class WallRun : MonoBehaviour
         private void Update()
         {
                 CheckWall();
-                if (CanWallRun())
-                {
-                        if (wallLeft && !wallRight)
+                        if (CanWallRun())
                         {
-                                Debug.Log("wall running on the left");
-                                
-                                StartWallRun();
-                        }
-                        else if (wallRight && !wallLeft)
-                        {
-                                Debug.Log("wall running on the Right");
-                                
-                                StartWallRun();
+                                if (wallLeft && !wallRight)
+                                {
+                                        Debug.Log("wall running on the left");
+
+                                        StartWallRun();
+                                }
+                                else if (wallRight && !wallLeft)
+                                {
+                                        Debug.Log("wall running on the Right");
+
+                                        StartWallRun();
+                                }
+                                else
+                                {
+                                        EndWallRun();
+                                }
                         }
                         else
                         {
                                 EndWallRun();
                         }
                 }
-                else
-                {
-                        EndWallRun();
-                }
-        }
 
         void CheckWall()
         {
