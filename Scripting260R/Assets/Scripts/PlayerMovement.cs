@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallBack;
     private bool wallFront;
     [SerializeField] private float wallDistance = 1.5f;
-    
+
     [Header("Drag")]
     public FloatOS playerDrag;
     private float groundDrag;

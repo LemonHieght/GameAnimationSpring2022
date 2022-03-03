@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29229a45515edd45954e05a90b18121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {fileID: 0}
+  playerLastLocation: {fileID: 11400000, guid: 917d98c25f6a26d489d348fedee911a8, type: 2}
   player:
     serializedVersion: 2
     m_Bits: 64

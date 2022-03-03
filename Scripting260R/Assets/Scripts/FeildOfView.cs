@@ -7,7 +7,7 @@ using UnityEngine;
 //Sebastian Lague FoV
 public class FeildOfView : MonoBehaviour
 {
-    public Vector3OS playerLocation;
+    public Vector3OS playerLastLocation;
     
     [SerializeField] private LayerMask player;
     [SerializeField] private LayerMask enviorment;
@@ -48,9 +48,16 @@ public class FeildOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, targetDirection, targetDistance, enviorment))
                 {
                     visibleTargets.Add(target);
+                    playerLastLocation.SetPosistion(target);
+                    SeePlayer();
                 }
             }
         }
+    }
+    
+    void SeePlayer()
+    {
+        
     }
 
     IEnumerator FindTargetWithDelay(float delay)
