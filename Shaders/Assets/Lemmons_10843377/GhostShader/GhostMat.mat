@@ -94,10 +94,10 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseScale: 2.94
-    - _NoiseTime: 0.076
+    - _NoiseScale: 8.67
+    - _NoiseTime: 0.5
     - _OcclusionStrength: 1
-    - _Outline: 1.45
+    - _Outline: 5
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -115,7 +115,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DistortionXY: {r: 1, g: 1, b: 0, a: 0}
-    - _EmissionColor: {r: 4.343517, g: 4.433362, b: 15.607213, a: 1}
+    - _EmissionColor: {r: 0, g: 3.5397356, b: 8.759513, a: 1}
     - _ObjectColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
